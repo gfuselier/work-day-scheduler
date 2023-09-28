@@ -10,17 +10,21 @@ $(function () {
   // function? How can DOM traversal be used to get the "hour-x" id of the
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
-  var saveButtons = $('.saveBtn')
-  console.log(saveButtons); //logs as an array
-  saveButtons.on("click", function() {
-    //take value of the user input and save it
+  var saveButton9 = $('#9').children().eq(2)
+  var textArea9 = $('#9').children().eq(1)
+  var textInput9 = textArea9.val()
+  console.log(textArea9);
+  console.log(saveButton9); 
+  saveButton9.on("click", function() {
+    //take value of the user input and save it. can set value with .val() also
+    localStorage.setItem
     //save to local storage with key-pair ("id", savedEvent)
     //can have multiple keys look at 22
     localStorage.setItem("id","text-area")
-    //on page load go over the keys and retrieve value .val(), can set value with .val() also
+    //on page load go over the keys and retrieve value .val(), 
     //replace the value of the text area
   })
-
+// get the buttons, loop over them and add event listener to each button
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the
@@ -57,6 +61,6 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
   var dateDisplayEl = $('#currentDay');
-  var currentDate = dayjs().format("dddd, MMMM D");
+  var currentDate = dayjs().format("dddd, MMMM D h:mm a");
   dateDisplayEl.text(currentDate);
 });
