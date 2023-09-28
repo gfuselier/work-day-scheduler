@@ -10,7 +10,17 @@ $(function () {
   // function? How can DOM traversal be used to get the "hour-x" id of the
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
-  //
+  var saveButtons = $('.saveBtn')
+  console.log(saveButtons); //logs as an array
+  saveButtons.on("click", function() {
+    //take value of the user input and save it
+    //save to local storage with key-pair ("id", savedEvent)
+    //can have multiple keys look at 22
+    localStorage.setItem("id","text-area")
+    //on page load go over the keys and retrieve value .val(), can set value with .val() also
+    //replace the value of the text area
+  })
+
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the
@@ -21,35 +31,24 @@ $(function () {
   console.log(typeof currentHour) //number
 
   var hour9 = $('#9'); //selects the div with id of 9
-  var hour9Id = Number(hour9[0].id) //selescts the id of that div
+  var hour9Id = Number(hour9[0].id) //selects the id of that div
   console.log(hour9Id) //logs as 9
   console.log(typeof hour9Id); // number
-
-  // if (currentHour == hour9Id) {
-  //   console.log("it's the present!")
-  //   hour9.addClass('present') //adds class to change the color
-  // } else if (currentHour > hour9Id) {
-  //   console.log("that's the past!")
-  //   hour9.addClass('past')
-  // } else {
-  //   console.log("that's the future!");
-  //   hour9.addClass('future')
-  // };
 
   var timeBlocks = $('.time-block') //select all time blocks
   console.log(timeBlocks[0]); // the 0 accesses the first time block in the array
 
-  timeBlocks.each(function() {
+  timeBlocks.each(function(i) {
   // console.log(Number(timeBlocks[i].id))
   if (currentHour == Number(timeBlocks[i].id)) {
     console.log("it's the present!");
-    timeBlocks[i].addClass('present'); //should add class to change the color - but doesn't work
+    $(timeBlocks[i]).addClass('present'); //should add class to change the color - but doesn't work
   } else if (currentHour > Number(timeBlocks[i].id)) {
     console.log("that's the past!");
-    timeBlocks[i].addClass('past');
+    $(timeBlocks[i]).addClass('past');
   } else {
     console.log("that's the future!");
-    timeBlocks[i].addClass('future');
+    $(timeBlocks[i]).addClass('future');
   };
 })
   // TODO: Add code to get any user input that was saved in localStorage and set
