@@ -16,26 +16,42 @@ $(function () {
   // attribute of each time-block be used to conditionally add or remove the
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
-  var currentHour = Number(dayjs().format("H"))
+  var currentHour = Number(dayjs().format("H")) //gets the current hour and turns it from a string into a number
   console.log(currentHour); //logs as 21
-  console.log(typeof currentHour) //string
+  console.log(typeof currentHour) //number
 
-  var hour9 = $('#9');
-  var hour9Id = Number(hour9[0].id) 
-  console.log(hour9Id) //logs as 21
-  console.log(typeof hour9Id); // string
+  var hour9 = $('#9'); //selects the div with id of 9
+  var hour9Id = Number(hour9[0].id) //selescts the id of that div
+  console.log(hour9Id) //logs as 9
+  console.log(typeof hour9Id); // number
 
-  if (currentHour == hour9Id) {
-    console.log("match!")
-    hour9.addClass('present') //this works when currentHour is compared to a number but not to the id
-  } else if (currentHour > hour9Id) {
-    console.log("that's the past!")
-    hour9.addClass('past')
+  // if (currentHour == hour9Id) {
+  //   console.log("it's the present!")
+  //   hour9.addClass('present') //adds class to change the color
+  // } else if (currentHour > hour9Id) {
+  //   console.log("that's the past!")
+  //   hour9.addClass('past')
+  // } else {
+  //   console.log("that's the future!");
+  //   hour9.addClass('future')
+  // };
+
+  var timeBlocks = $('.time-block') //select all time blocks
+  console.log(timeBlocks[0]); // the 0 accesses the first time block in the array
+
+  timeBlocks.each(function() {
+  // console.log(Number(timeBlocks[i].id))
+  if (currentHour == Number(timeBlocks[i].id)) {
+    console.log("it's the present!");
+    timeBlocks[i].addClass('present'); //should add class to change the color - but doesn't work
+  } else if (currentHour > Number(timeBlocks[i].id)) {
+    console.log("that's the past!");
+    timeBlocks[i].addClass('past');
   } else {
     console.log("that's the future!");
-    hour9.addClass('future')
+    timeBlocks[i].addClass('future');
   };
-
+})
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
