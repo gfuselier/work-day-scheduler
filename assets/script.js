@@ -7,21 +7,52 @@ $(function () {
   
   var saveButton9 = $('#save9')
   var textArea9 = $('#text-9')
+  var textArea10 = $('#text-10')
+
+  var textAreas = $('.description') //select all text areas
+  console.log(textAreas)
   
-renderEvent();
+  
+  var saveButtons = $('.saveBtn')
+  console.log(saveButtons)
+
+  renderEvent();
 
   function renderEvent() {
-    var note = localStorage.getItem("textArea9") || ""
-    textArea9.text(note);
-  }
+  textAreas.each(function(i) {
+    var note = localStorage.getItem($(textAreas[i])) || ""
+      $(textAreas[i]).text(note);
+  })
+}
+  // renderEvent();
 
-  saveButton9.on("click", saveEvent)
+
+  // function renderEvent() {
+  //   for (var i = 0; i < textAreaArray.length; i++) {
+  //     var note = localStorage.getItem("textAreaArray[i]") || ""
+  //     textAreaArray[i].text(note);
+  //   }
+  // }
+
+  saveButtons.on("click", saveEvent)
 
 
-  function saveEvent() {
-    var note = textArea9.val();
-    localStorage.setItem("textArea9", note);
-    renderEvent();
+  function saveEvent(event) {
+    event.preventDefault();
+
+    
+
+    textAreas.each(function(i) {
+      var note = $(textAreas[i]).val();
+      var selectedArea = $(textAreas[i])
+    localStorage.setItem(selectedArea, note);
+    })
+    
+    // var note = textAreas[i].val();
+    // localStorage.setItem("textAreaArray[i]", note);
+    // renderEvent();
+
+
     // textArea9.textContent = textInput9
     // console.log(textArea9)
     // localStorage.setItem("event-9", textInput9)
