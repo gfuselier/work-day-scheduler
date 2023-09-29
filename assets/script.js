@@ -7,13 +7,21 @@ $(function () {
   
   var saveButton9 = $('#save9')
   var textArea9 = $('#text-9')
-  var note = localStorage.getItem("textArea9") || ""
-
   
+renderEvent();
+
+  function renderEvent() {
+    var note = localStorage.getItem("textArea9") || ""
+    textArea9.text(note);
+  }
+
   saveButton9.on("click", saveEvent)
+
+
   function saveEvent() {
     var note = textArea9.val();
     localStorage.setItem("textArea9", note);
+    renderEvent();
     // textArea9.textContent = textInput9
     // console.log(textArea9)
     // localStorage.setItem("event-9", textInput9)
