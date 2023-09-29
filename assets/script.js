@@ -4,26 +4,24 @@
 
 
 $(function () {
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
-  var saveButton9 = $('#9').children().eq(2)
-  var textArea9 = $('#9').children().eq(1)
-  var textInput9 = textArea9.val()
-  console.log(textArea9);
-  console.log(saveButton9); 
-  saveButton9.on("click", function() {
-    //take value of the user input and save it. can set value with .val() also
-    localStorage.setItem
+  
+  var saveButton9 = $('#save9')
+  var textArea9 = $('#text-9')
+  var note = localStorage.getItem("textArea9") || ""
+
+  
+  saveButton9.on("click", saveEvent)
+  function saveEvent() {
+    var note = textArea9.val();
+    localStorage.setItem("textArea9", note);
+    // textArea9.textContent = textInput9
+    // console.log(textArea9)
+    // localStorage.setItem("event-9", textInput9)
     //save to local storage with key-pair ("id", savedEvent)
-    //can have multiple keys look at 22
-    localStorage.setItem("id","text-area")
+    //can have multiple keys look at 22, capturing value hint in event delegation
     //on page load go over the keys and retrieve value .val(), 
     //replace the value of the text area
-  })
+  }
 // get the buttons, loop over them and add event listener to each button
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
