@@ -1,33 +1,26 @@
 
 $(function () {
-  
-  var textAreas = $('.description') //select all text areas
-  console.log(textAreas)
-  
-  var saveButtons = $('.saveBtn') //select all save buttons
-  console.log(saveButtons)
-
+  //add an event listener to the main container
   var container = document.getElementById('container')
   container.addEventListener("click", function (event) {
     if (event.target.matches('.saveBtn')) {
       console.log(event.target)
       console.log(event.target.parentElement.getAttribute("id"))
+      //set variable for time block that is being saved, set the value of the textbox, then save in local storage
       var time = "text-" + event.target.parentElement.getAttribute("id")
-
       var note = event.target.parentElement.children[1].value
       console.log(time,note)
       localStorage.setItem(time, note)
-      
     }
   })
 
+  //for each hour block, get the value of the textbox from local storage and set it as the current value on page load
+  //this persists the data of the scheduler
 for (var i=9; i < 18; i++) {
   $("#text-" + i).val(localStorage.getItem("text-" + i))
 }
 
 
-
-  
   var currentHour = Number(dayjs().format("H")) //gets the current hour and turns it from a string into a number
   console.log(currentHour); 
   
