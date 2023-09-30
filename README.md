@@ -11,7 +11,7 @@ Access my Work Day Scheduler at [https://gfuselier.github.io/work-day-scheduler]
 ![screenshot of the application](./assets/scheduler-screenshot.png)
 
 ## Credits
-N/A
+Tutor - Chris B
 
 ## License
 N/A
