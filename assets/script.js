@@ -7,29 +7,26 @@ $(function () {
   var saveButtons = $('.saveBtn') //select all save buttons
   console.log(saveButtons)
 
-  renderEvent(); //fills in blocks on page load
+  var container = document.getElementById('container')
+  container.addEventListener("click", function (event) {
+    if (event.target.matches('.saveBtn')) {
+      console.log(event.target)
+      console.log(event.target.parentElement.getAttribute("id"))
+      var time = "text-" + event.target.parentElement.getAttribute("id")
 
-  //this function should fill in each block with the value from local storage
-  function renderEvent() {
-  textAreas.each(function(i) {
-    var note = localStorage.getItem($(textAreas[i])) || ""
-      $(textAreas[i]).text(note);
+      var note = event.target.parentElement.children[1].value
+      console.log(time,note)
+      localStorage.setItem(time, note)
+      
+    }
   })
+
+for (var i=9; i < 18; i++) {
+  $("#text-" + i).val(localStorage.getItem("text-" + i))
 }
-  
-  saveButtons.on("click", saveEvent) //when a save button is clicked it runs the saveEvent function
 
-//this function should (but doesn't) save the value of the textarea to local storage
-  function saveEvent(event) {
-    event.preventDefault();
 
-    textAreas.each(function(i) {
-      var note = $(textAreas[i]).val();
-      var selectedArea = $(textAreas[i])
-    localStorage.setItem(selectedArea, note);
-    })
-  }  
-    
+
   
   var currentHour = Number(dayjs().format("H")) //gets the current hour and turns it from a string into a number
   console.log(currentHour); 
